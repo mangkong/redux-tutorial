@@ -26,5 +26,6 @@ const mapActionToProps = (dispatch) => ({
   zzz: (name) => dispatch(updateUser(name))
 });
 
+// HOC란 -> F(App) => New App?
 export default connect(mapStateToProps, mapActionToProps)(App);
 //export default App;
