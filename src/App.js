@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {connect} from "react-redux";
+import {updateUser} from "./redux/actions";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <p>{this.props.users.user}</p>
+        <button onClick={()=>this.props.zzz('KiM')}>버튼</button>
       </div>
     );
   }
 }
 
-export default App;
+// store의 state를 props에 매핑
+const mapStateToProps = (state) => ({
+  products : state.products,
+  users : state.users
+});
+
+// 액션을 디스패치하는 펑션을 props에 매핑
+const mapActionToProps = (dispatch) => ({
+  zzz: (name) => dispatch(updateUser(name))
+});
+
+export default connect(mapStateToProps, mapActionToProps)(App);
+//export default App;
